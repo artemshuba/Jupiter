@@ -1,0 +1,14 @@
+﻿using System.Collections.Generic;
+using Windows.UI.Xaml.Navigation;
+
+namespace Jupiter.Services.Navigation
+{
+    public interface INavigable
+    {
+        void OnNavigatedTo(Dictionary<string, object> parameters, NavigationMode mode);
+
+        void OnNavigatingFrom(NavigatingEventArgs e);
+
+        NavigationService NavigationService { get; set; }
+    }
+}
