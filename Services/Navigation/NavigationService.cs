@@ -17,7 +17,7 @@ namespace Jupiter.Services.Navigation
 
         public bool CanGoBack => FrameFacade.CanGoBack;
 
-        internal NavigationService(Frame frame)
+        public NavigationService(Frame frame)
         {
             FrameFacade = new FrameFacade(frame);
 

@@ -106,7 +106,7 @@ namespace Jupiter.Common
         /// This is private because it is a specialized prelude to OnStartAsync().
         /// OnStartAsync will not be called if state restore is determined.
         /// </summary>
-        private void InternalActivatedAsync(IActivatedEventArgs e)
+        protected void InternalActivatedAsync(IActivatedEventArgs e)
         {
             // sometimes activate requires a frame to be built
             if (Window.Current.Content == null)
@@ -125,7 +125,7 @@ namespace Jupiter.Common
             Window.Current.Activate();
         }
 
-        private void InternalLaunch(ILaunchActivatedEventArgs e)
+        protected void InternalLaunch(ILaunchActivatedEventArgs e)
         {
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
@@ -192,7 +192,7 @@ namespace Jupiter.Common
             }
         }
 
-        private void InitializeFrame(IActivatedEventArgs e)
+        protected void InitializeFrame(IActivatedEventArgs e)
         {
             // allow the user to do things, even when restoring
             OnInitialize(e);
@@ -217,23 +217,16 @@ namespace Jupiter.Common
             return new Frame();
         }
 
-        private void SubscribeBackButton()
+        protected void SubscribeBackButton()
         {
             // Hook up the default Back handler
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, args) =>
             {
                 var handled = false;
-                if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
+                if (NavigationService.CanGoBack)
                 {
-                    if (NavigationService.CanGoBack)
-                    {
-                        NavigationService.GoBack();
-                        handled = true;
-                    }
-                }
-                else
-                {
-                    handled = !NavigationService.CanGoBack;
+                    NavigationService.GoBack();
+                    handled = true;
                 }
 
                 args.Handled = handled;
