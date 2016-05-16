@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Data;
 
 namespace Jupiter.Converters
 {
-    public class NullToVisibilityConverter : IValueConverter
+    public class IsEmptyToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string culture)
         {
