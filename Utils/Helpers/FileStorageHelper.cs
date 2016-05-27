@@ -139,5 +139,12 @@ namespace Jupiter.Utils.Helpers
             var file = await folder.GetItemAsync(path);
             await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
         }
+
+        public static async Task DeleteFolder(string path, IStorageFolder rootFolder = null)
+        {
+            var folder = rootFolder ?? ApplicationData.Current.LocalFolder;
+            var f = await folder.GetItemAsync(path);
+            await f.DeleteAsync(StorageDeleteOption.PermanentDelete);
+        }
     }
 }
