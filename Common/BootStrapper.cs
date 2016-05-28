@@ -32,6 +32,8 @@ namespace Jupiter.Common
 
         public bool IsActive => _isActive;
 
+        public bool IsBackButtonEnabled { get; set; }
+
         protected BootStrapper()
         {
             Current = this;
@@ -204,8 +206,10 @@ namespace Jupiter.Common
                 // build the default frame
                 var frame = CreateRootFrame(e);
                 var navigationService = new NavigationService(frame);
+                navigationService.IsBackButtonEnabled = IsBackButtonEnabled;
                 Window.Current.Content = navigationService.Frame;
                 WindowWrapper.Current().NavigationService = navigationService;
+
                 //Window.Current.Content = NavigationServiceFactory(BackButton.Attach, ExistingContent.Include, frame).Frame;
             }
 

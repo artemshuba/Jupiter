@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Jupiter.Common;
+using Windows.UI.Core;
 
 namespace Jupiter.Services.Navigation
 {
@@ -16,6 +17,8 @@ namespace Jupiter.Services.Navigation
         public Frame Frame => FrameFacade.Frame;
 
         public bool CanGoBack => FrameFacade.CanGoBack;
+
+        public bool IsBackButtonEnabled { get; set; }
 
         public NavigationService(Frame frame)
         {
@@ -29,6 +32,8 @@ namespace Jupiter.Services.Navigation
             FrameFacade.Frame.Navigated += (sender, args) =>
             {
                 OnNavigated(args.NavigationMode, args.Parameter);
+
+                UpdateBackButton();
             };
         }
 
@@ -42,6 +47,8 @@ namespace Jupiter.Services.Navigation
             if (result && clearHistory)
             {
                 Frame.BackStack.Clear();
+
+                UpdateBackButton();
             }
 
             return result;
@@ -109,6 +116,11 @@ namespace Jupiter.Services.Navigation
                     dataContext.OnNavigatedTo(parameters, mode);
                 }
             }
+        }
+
+        private void UpdateBackButton()
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = (Frame.CanGoBack && IsBackButtonEnabled) ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
     }
 }
