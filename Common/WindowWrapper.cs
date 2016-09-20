@@ -16,7 +16,7 @@ namespace Jupiter.Common
 
         public Window Window { get; }
 
-        public NavigationService NavigationService { get; internal set; }
+        public NavigationService NavigationService { get; set; }
 
         internal WindowWrapper(Window window)
         {

@@ -146,5 +146,13 @@ namespace Jupiter.Utils.Helpers
             var f = await folder.GetItemAsync(path);
             await f.DeleteAsync(StorageDeleteOption.PermanentDelete);
         }
+
+        public static async Task<DateTimeOffset> GetLastModifiedDate(string path, IStorageFolder rootFolder = null)
+        {
+            var folder = rootFolder ?? ApplicationData.Current.LocalFolder;
+            var file = await folder.GetFileAsync(path);
+
+            return (await file.GetBasicPropertiesAsync()).DateModified;
+        }
     }
 }
