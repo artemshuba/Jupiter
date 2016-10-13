@@ -138,6 +138,7 @@
     <Compile Include="Services\Navigation\NavigatingEventArgs.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
     <Compile Include="Services\Settings\SettingsService.cs" />
+    <Compile Include="Utils\Extensions\CollectionsExtensions.cs" />
     <Compile Include="Utils\Extensions\StorageFolderExtensions.cs" />
     <Compile Include="Utils\Extensions\VisualTreeHelperExtensions.cs" />
     <Compile Include="Utils\Helpers\AppInfoHelper.cs" />
