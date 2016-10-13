@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Jupiter.Services.Navigation;
 
-namespace Jupiter.Common
+namespace Jupiter.Application
 {
     public class NavigationServiceList
     {

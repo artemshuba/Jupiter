@@ -16,9 +16,9 @@ namespace Jupiter.Utils.Extensions
         public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             if (source == null)
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             if (action == null)
-                throw new ArgumentNullException("action");
+                throw new ArgumentNullException(nameof(action));
 
             foreach (var item in source)
             {
@@ -142,8 +142,8 @@ namespace Jupiter.Utils.Extensions
         public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source,
             Func<TSource, TKey> selector, IComparer<TKey> comparer)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (selector == null) throw new ArgumentNullException("selector");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
             comparer = comparer ?? Comparer<TKey>.Default;
 
             using (var sourceIterator = source.GetEnumerator())
@@ -214,8 +214,8 @@ namespace Jupiter.Utils.Extensions
         public static TSource MaxBy<TSource, TKey>(this IEnumerable<TSource> source,
             Func<TSource, TKey> selector, IComparer<TKey> comparer)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (selector == null) throw new ArgumentNullException("selector");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
             comparer = comparer ?? Comparer<TKey>.Default;
 
             using (var sourceIterator = source.GetEnumerator())

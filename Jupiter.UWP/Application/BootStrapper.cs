@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation.Metadata;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Jupiter.Services.Navigation;
 
-namespace Jupiter.Common
+namespace Jupiter.Application
 {
     public enum StartKind
     {
@@ -17,12 +14,12 @@ namespace Jupiter.Common
         Activate
     }
 
-    public abstract class BootStrapper : Application
+    public abstract class JupiterApp : Windows.UI.Xaml.Application
     {
         private bool _isMinimized = false;
         private bool _isActive = true;
 
-        public new static BootStrapper Current { get; private set; }
+        public new static JupiterApp Current { get; private set; }
 
         public NavigationService NavigationService => NavigationServices.Default; // WindowWrapper.Current().NavigationService;
 
@@ -34,7 +31,7 @@ namespace Jupiter.Common
 
         public bool IsBackButtonEnabled { get; set; }
 
-        protected BootStrapper()
+        protected JupiterApp()
         {
             Current = this;
             this.UnhandledException += BootStrapper_UnhandledException;

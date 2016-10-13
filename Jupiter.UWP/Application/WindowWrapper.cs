@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
 
-namespace Jupiter.Common
+namespace Jupiter.Application
 {
     public class WindowWrapper
     {
@@ -16,7 +16,7 @@ namespace Jupiter.Common
 
         public Window Window { get; }
 
-        public NavigationService NavigationService { get; internal set; }
+        public NavigationService NavigationService { get; set; }
 
         internal WindowWrapper(Window window)
         {

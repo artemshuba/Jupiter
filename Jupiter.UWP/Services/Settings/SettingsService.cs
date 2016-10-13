@@ -2,18 +2,19 @@
 using System.Runtime.CompilerServices;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Jupiter.Core.Services.Settings;
 using Newtonsoft.Json;
 
 namespace Jupiter.Services.Settings
 {
-    public class SettingsService
+    public class SettingsService : ISettingsService
     {
-        private static SettingsService _local;
-        private static SettingsService _roaming;
+        private static ISettingsService _local;
+        private static ISettingsService _roaming;
 
-        public static SettingsService Local => _local ?? (_local = new SettingsService(ApplicationData.Current.LocalSettings.Values));
+        public static ISettingsService Local => _local ?? (_local = new SettingsService(ApplicationData.Current.LocalSettings.Values));
 
-        public static SettingsService Roaming => _roaming ?? (_roaming = new SettingsService(ApplicationData.Current.RoamingSettings.Values));
+        public static ISettingsService Roaming => _roaming ?? (_roaming = new SettingsService(ApplicationData.Current.RoamingSettings.Values));
 
         protected IPropertySet Values { get; set; }
 

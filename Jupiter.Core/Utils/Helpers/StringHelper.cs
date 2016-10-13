@@ -3,14 +3,14 @@
     public static class StringHelper
     {
         /// <summary>
-        /// Локализация числительных
+        /// Numerals localization
         /// </summary>
         /// <param name="value"></param>
         /// <param name="singularString"></param>
         /// <param name="dualString"></param>
         /// <param name="pluralString"></param>
         /// <returns></returns>
-        public static string LocNum(int value, string singularString, string dualString, string pluralString)
+        public static string LocalizeNumerals(int value, string singularString, string dualString, string pluralString)
         {
             string result = string.Empty;
 

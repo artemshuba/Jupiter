@@ -5,8 +5,8 @@ using System.Reflection;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using Jupiter.Common;
 using Windows.UI.Core;
+using Jupiter.Application;
 
 namespace Jupiter.Services.Navigation
 {
@@ -100,7 +100,7 @@ namespace Jupiter.Services.Navigation
                 if (page.DataContext == null)
                 {
                     // to support dependency injection, but keeping it optional.
-                    var viewmodel = BootStrapper.Current.ResolveForPage(page.GetType(), this);
+                    var viewmodel = JupiterApp.Current.ResolveForPage(page.GetType(), this);
                     if (viewmodel != null)
                         page.DataContext = viewmodel;
                 }
