@@ -16,9 +16,9 @@ namespace Jupiter.Services.Navigation
 
         public Frame Frame => FrameFacade.Frame;
 
-        public bool CanGoBack => FrameFacade.CanGoBack;
+        public virtual bool CanGoBack => FrameFacade.CanGoBack;
 
-        public bool IsBackButtonEnabled { get; set; }
+        public virtual bool IsBackButtonEnabled { get; set; }
 
         public NavigationService(Frame frame)
         {
@@ -37,7 +37,7 @@ namespace Jupiter.Services.Navigation
             };
         }
 
-        public bool Navigate(Type page, object parameter = null, bool clearHistory = false, NavigationTransitionInfo infoOverride = null)
+        public virtual bool Navigate(Type page, object parameter = null, bool clearHistory = false, NavigationTransitionInfo infoOverride = null)
         {
             if (page == null)
                 throw new ArgumentNullException(nameof(page));
@@ -54,12 +54,12 @@ namespace Jupiter.Services.Navigation
             return result;
         }
 
-        public void GoBack()
+        public virtual void GoBack()
         {
             FrameFacade.GoBack();
         }
 
-        private bool OnNavigating(NavigatingCancelEventArgs e)
+        protected virtual bool OnNavigating(NavigatingCancelEventArgs e)
         {
             var page = FrameFacade.Content as Page;
             if (page != null)
@@ -92,7 +92,7 @@ namespace Jupiter.Services.Navigation
             return true;
         }
 
-        private void OnNavigated(NavigationMode mode, object parameter)
+        protected virtual void OnNavigated(NavigationMode mode, object parameter)
         {
             var page = FrameFacade.Content as Page;
             if (page != null)
@@ -118,7 +118,7 @@ namespace Jupiter.Services.Navigation
             }
         }
 
-        private void UpdateBackButton()
+        protected virtual void UpdateBackButton()
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = (Frame.CanGoBack && IsBackButtonEnabled) ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }

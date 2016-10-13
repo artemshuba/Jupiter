@@ -51,7 +51,7 @@ namespace Jupiter.Application
         /// </summary>
         public abstract void OnStart(StartKind startKind, IActivatedEventArgs args);
 
-        protected sealed override void OnWindowCreated(WindowCreatedEventArgs args)
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
             var window = new WindowWrapper(args.Window);
             window.Window.VisibilityChanged += Window_VisibilityChanged;
@@ -78,7 +78,7 @@ namespace Jupiter.Application
         {
         }
 
-        protected sealed override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             InternalLaunch(e);
         }
