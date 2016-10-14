@@ -10,6 +10,8 @@ namespace Jupiter.iOS
 	{
 		private static NSUserDefaults _prefs = NSUserDefaults.StandardUserDefaults;
 
+		public static ISettingsService Local => new SettingsService();
+
 		public T Get<T>([CallerMemberName] string key = null, T defaultValue = default(T))
 		{
 			if (key == null)
