@@ -113,7 +113,7 @@
   <ItemGroup>
     <Compile Include="Behavior\ContextMenuBehavior.cs" />
     <Compile Include="Collections\IncrementalLoadingCollection.cs" />
-    <Compile Include="Application\BootStrapper.cs" />
+    <Compile Include="Application\JupiterApp.cs" />
     <Compile Include="Application\NavigationServiceList.cs" />
     <Compile Include="Application\WindowWrapper.cs" />
     <Compile Include="Controls\LoadingIndicator.cs" />
