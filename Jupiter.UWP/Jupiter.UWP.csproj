@@ -11,8 +11,8 @@
     <AssemblyName>Jupiter.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -137,13 +137,17 @@
     <Compile Include="Services\Navigation\NavigatedEventArgs.cs" />
     <Compile Include="Services\Navigation\NavigatingEventArgs.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
+    <Compile Include="Services\Settings\ISettingsService.cs" />
     <Compile Include="Services\Settings\SettingsService.cs" />
     <Compile Include="Utils\Extensions\CollectionsExtensions.cs" />
     <Compile Include="Utils\Extensions\StorageFolderExtensions.cs" />
+    <Compile Include="Utils\Extensions\StreamExtensions.cs" />
+    <Compile Include="Utils\Extensions\StringExtensions.cs" />
     <Compile Include="Utils\Extensions\VisualTreeHelperExtensions.cs" />
     <Compile Include="Utils\Helpers\AppInfoHelper.cs" />
     <Compile Include="Utils\Helpers\DeviceHelper.cs" />
     <Compile Include="Utils\Helpers\FileStorageHelper.cs" />
+    <Compile Include="Utils\Helpers\StringHelper.cs" />
     <EmbeddedResource Include="Properties\Jupiter.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -157,18 +161,12 @@
     <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
       <Name>Behaviors SDK %28XAML%29</Name>
     </SDKReference>
-    <SDKReference Include="WindowsDesktop, Version=10.0.10586.0">
+    <SDKReference Include="WindowsDesktop, Version=10.0.14393.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
-    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
+    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Jupiter.Core\Jupiter.Core.csproj">
-      <Project>{c4b4f855-90ca-4e36-8b6d-3cae88ae7bcc}</Project>
-      <Name>Jupiter.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
