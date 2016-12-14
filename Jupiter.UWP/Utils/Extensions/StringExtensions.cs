@@ -20,6 +20,10 @@ namespace Jupiter.Utils.Extensions
             {
                 input = input.Substring(input.IndexOf('?') + 1);
             }
+            else if (input.Contains("#"))
+            {
+                input = input.Substring(input.IndexOf('#') + 1);
+            }
 
             foreach (string vp in Regex.Split(input, "&"))
             {

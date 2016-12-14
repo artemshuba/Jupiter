@@ -15,12 +15,25 @@ namespace Jupiter.Mvvm
             get { return _opTokens; }
         }
 
+        protected ViewModelBase()
+        {
+            InitializeCommands();
+        }
+
         public virtual void OnNavigatedTo(Dictionary<string, object> parameters, NavigationMode mode)
         {
         }
 
         public virtual void OnNavigatingFrom(NavigatingEventArgs e)
         {
+        }
+
+        /// <summary>
+        /// A method for initialization commands
+        /// </summary>
+        protected virtual void InitializeCommands()
+        {
+
         }
 
         #region OperationToken helpers
