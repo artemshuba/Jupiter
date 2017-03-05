@@ -9,9 +9,11 @@ using Windows.UI.Xaml.Data;
 
 namespace Jupiter.Collections
 {
-    // This class can used as a jumpstart for implementing ISupportIncrementalLoading. 
-    // Implementing the ISupportIncrementalLoading interfaces allows you to create a list that loads
-    //  more data automatically when the user scrolls to the end of of a GridView or ListView.
+    /// <summary>
+    /// This class can used as a jumpstart for implementing ISupportIncrementalLoading. 
+    /// Implementing the ISupportIncrementalLoading interfaces allows you to create a list that loads
+    /// more data automatically when the user scrolls to the end of of a GridView or ListView.
+    /// </summary>
     public class IncrementalLoadingCollection<T> : ObservableCollection<T>, ISupportIncrementalLoading
     {
         /// <summary>

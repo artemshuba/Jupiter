@@ -2,9 +2,7 @@
 
 namespace Jupiter.Mvvm
 {
-    /// <summary>
-    /// Обертка над Dictionary, нужна т.к. биндинг к Dictionary по ключу не работает с .NET Native
-    /// </summary>
+    //Dictionary wrapper because binding directly to Dictionary by the key from XAML won't work with .NET Native
     public class OperationTokenCollection
     {
         private Dictionary<string, OperationToken> _tokens = new Dictionary<string, OperationToken>();

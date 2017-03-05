@@ -4,10 +4,16 @@ using Windows.System.Profile;
 
 namespace Jupiter.Utils.Helpers
 {
+    /// <summary>
+    /// Helper class to get device information
+    /// </summary>
     public static class DeviceHelper
     {
         private static ResolutionScale _resolutionScale = ResolutionScale.Invalid;
 
+        /// <summary>
+        /// Resolution scale
+        /// </summary>
         public static ResolutionScale ResolutionScale
         {
             get
@@ -19,6 +25,9 @@ namespace Jupiter.Utils.Helpers
             }
         }
 
+        /// <summary>
+        /// Returns device id
+        /// </summary>
         public static string GetDeviceId()
         {
             var token = HardwareIdentification.GetPackageSpecificToken(null);
@@ -27,6 +36,9 @@ namespace Jupiter.Utils.Helpers
             return CryptographicBuffer.EncodeToHexString(hardwareId);
         }
 
+        /// <summary>
+        /// returns OS version
+        /// </summary>
         public static string GetOsVersion()
         {
             // get the system version number
@@ -39,6 +51,9 @@ namespace Jupiter.Utils.Helpers
             return $"{v1}.{v2}.{v3}.{v4}";
         }
 
+        /// <summary>
+        /// Returns true if current device is a mobile phone
+        /// </summary>
         public static bool IsMobile()
         {
             return AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile";

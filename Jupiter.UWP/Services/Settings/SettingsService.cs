@@ -7,13 +7,22 @@ using Newtonsoft.Json;
 
 namespace Jupiter.Services.Settings
 {
+    /// <summary>
+    /// Service to load and store local settings
+    /// </summary>
     public class SettingsService : ISettingsService
     {
         private static ISettingsService _local;
         private static ISettingsService _roaming;
 
+        /// <summary>
+        /// Local settings. Stored on current device.
+        /// </summary>
         public static ISettingsService Local => _local ?? (_local = new SettingsService(ApplicationData.Current.LocalSettings.Values));
 
+        /// <summary>
+        /// Roaming settings. Stored on user account and may be roamed (must be less than 100KB) to other devices of current user.
+        /// </summary>
         public static ISettingsService Roaming => _roaming ?? (_roaming = new SettingsService(ApplicationData.Current.RoamingSettings.Values));
 
         protected IPropertySet Values { get; set; }
@@ -23,6 +32,9 @@ namespace Jupiter.Services.Settings
             Values = values;
         }
 
+        /// <summary>
+        /// Store value
+        /// </summary>
         public void Set<T>(T value, [CallerMemberName]string key = null)
         {
             if (key == null)
@@ -34,6 +46,9 @@ namespace Jupiter.Services.Settings
             Values[key] = container;
         }
 
+        /// <summary>
+        /// Load value
+        /// </summary>
         public T Get<T>([CallerMemberName] string key = null, T defaultValue = default(T))
         {
             if (key == null)
@@ -43,7 +58,7 @@ namespace Jupiter.Services.Settings
             {
                 if (Values.ContainsKey(key))
                 {
-                    //если по указанному ключу контенер, достаем значение
+                    //if there is a container stored at specified key, unwrap it
                     var container = Values[key] as ApplicationDataCompositeValue;
                     if (container != null && container.ContainsKey("Value"))
                     {
@@ -53,7 +68,7 @@ namespace Jupiter.Services.Settings
                     }
                     else
                     {
-                        //иначе, например при обновлении старого приложения, там может сразу лежать значение, достаем его
+                        //else (e.g. updating old version of the app) there may be direct value, so just take it
                         if (Values[key].GetType() == typeof(T))
                             return (T)Values[key];
                     }

@@ -4,15 +4,18 @@ using Jupiter.Services.Navigation;
 
 namespace Jupiter.Mvvm
 {
+    /// <summary>
+    /// Base ViewModel class
+    /// </summary>
     public abstract class ViewModelBase : BindableBase, INavigable
     {
-        private readonly OperationTokenCollection _opTokens = new OperationTokenCollection();
+        private readonly OperationTokenCollection _operations = new OperationTokenCollection();
 
         public NavigationService NavigationService { get; set; }
 
-        public OperationTokenCollection OpTokens
+        public OperationTokenCollection Operations
         {
-            get { return _opTokens; }
+            get { return _operations; }
         }
 
         protected ViewModelBase()
@@ -20,16 +23,22 @@ namespace Jupiter.Mvvm
             InitializeCommands();
         }
 
+        /// <summary>
+        /// Will be called after navigation to view associated with this ViewModel.
+        /// </summary>
         public virtual void OnNavigatedTo(Dictionary<string, object> parameters, NavigationMode mode)
         {
         }
 
+        /// <summary>
+        /// Will be called on navigating from view associated with this ViewModel.
+        /// </summary>
         public virtual void OnNavigatingFrom(NavigatingEventArgs e)
         {
         }
 
         /// <summary>
-        /// A method for initialization commands
+        /// A method for initializing commands
         /// </summary>
         protected virtual void InitializeCommands()
         {
@@ -38,34 +47,51 @@ namespace Jupiter.Mvvm
 
         #region OperationToken helpers
 
+        /// <summary>
+        /// Registers new long running operations
+        /// </summary>
         protected void RegisterTasks(params string[] ids)
         {
             foreach (var id in ids)
             {
-                _opTokens.Add(id, new OperationToken());
+                _operations.Add(id, new OperationToken());
             }
         }
 
+        /// <summary>
+        /// Indicates that long running operation has started
+        /// </summary>
+        /// <param name="id">Id of operation</param>
+        /// <returns>Token of started operation</returns>
         protected OperationToken TaskStarted(string id)
         {
-            if (!_opTokens.IsRegistered(id))
-                _opTokens.Add(id, new OperationToken());
+            if (!_operations.IsRegistered(id))
+                _operations.Add(id, new OperationToken());
 
-            _opTokens[id].Error = null;
-            _opTokens[id].IsWorking = true;
+            _operations[id].Error = null;
+            _operations[id].IsWorking = true;
 
-            return _opTokens[id];
+            return _operations[id];
         }
 
+        /// <summary>
+        /// Indicates that long running operation has finished
+        /// </summary>
+        /// <param name="id">Id of operation</param>
         protected void TaskFinished(string id)
         {
-            _opTokens[id].IsWorking = false;
+            _operations[id].IsWorking = false;
         }
 
-        protected void TaskError(string id, string error)
+        /// <summary>
+        /// Indicates that long running operation has failed
+        /// </summary>
+        /// <param name="id">Id of operation</param>
+        /// <param name="error">Text that will be displayed to user</param>
+        protected void TaskError(string id, string error = null)
         {
-            _opTokens[id].Error = error;
-            _opTokens[id].IsWorking = false;
+            _operations[id].Error = error;
+            _operations[id].IsWorking = false;
         }
 
         #endregion

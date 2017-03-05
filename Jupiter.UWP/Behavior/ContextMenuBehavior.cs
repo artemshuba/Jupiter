@@ -11,6 +11,9 @@ using Microsoft.Xaml.Interactivity;
 
 namespace Jupiter.Behavior
 {
+    /// <summary>
+    /// Shows attached flyout by right click or holding on control
+    /// </summary>
     public class ContextMenuBehavior : DependencyObject, IBehavior
     {
         public DependencyObject AssociatedObject { get; private set; }
@@ -45,7 +48,6 @@ namespace Jupiter.Behavior
         {
             if (e.PointerDeviceType != PointerDeviceType.Touch)
             {
-                Debug.WriteLine("Context menu: right tapped");
                 ShowFlyout(e.GetPosition(null));
             }
         }
@@ -54,7 +56,6 @@ namespace Jupiter.Behavior
         {
             if (e.HoldingState == HoldingState.Started)
             {
-                Debug.WriteLine("Context menu: holding");
                 ShowFlyout();
             }
         }

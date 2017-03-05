@@ -3,15 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Jupiter.Controls">
 
+    <!-- Default style for LoadingIndicator control -->
     <Style TargetType="controls:LoadingIndicator">
-        <!--<Setter Property="ProgressIndicatorStyle">
-            <Setter.Value>
-                <Style TargetType="ProgressRing">
-                    <Setter Property="Width" Value="45"/>
-                    <Setter Property="Height" Value="45" />
-                </Style>
-            </Setter.Value>
-        </Setter>-->
         <Setter Property="ErrorContentStyle">
             <Setter.Value>
                 <Style TargetType="ContentPresenter">

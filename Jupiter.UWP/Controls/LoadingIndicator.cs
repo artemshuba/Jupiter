@@ -1,10 +1,11 @@
-﻿using System;
-using System.Diagnostics;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Jupiter.Controls
 {
+    /// <summary>
+    /// Control that shows a progress of operation or error if it's failed.
+    /// </summary>
     [TemplateVisualState(Name = "Normal", GroupName = "CommonStates")]
     [TemplateVisualState(Name = "Busy", GroupName = "CommonStates")]
     [TemplateVisualState(Name = "Error", GroupName = "CommonStates")]

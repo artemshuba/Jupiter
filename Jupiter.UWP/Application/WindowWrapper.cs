@@ -22,6 +22,7 @@ namespace Jupiter.Application
         {
             if (ActiveWrappers.Any(x => x.Window == window))
                 throw new Exception("Windows already has a wrapper; use Current(window) to fetch.");
+
             Window = window;
             ActiveWrappers.Add(this);
             window.Closed += (s, e) => { ActiveWrappers.Remove(this); };

@@ -21,7 +21,7 @@ namespace Jupiter.Application
 
         public new static JupiterApp Current { get; private set; }
 
-        public NavigationService NavigationService => NavigationServices.Default; // WindowWrapper.Current().NavigationService;
+        public NavigationService NavigationService => NavigationServices.Default;
 
         public NavigationServiceList NavigationServices { get; } = new NavigationServiceList();
 
@@ -46,7 +46,7 @@ namespace Jupiter.Application
 
         /// <summary>
         /// OnStartAsync is the one-stop-show override to handle when your app starts
-        /// Template 10 will not call OnStartAsync if the app is restored from state.
+        /// OnStartAsync will not be called if the app is restored from state.
         /// An app restores from state when the app was suspended and then terminated (PreviousExecutionState terminated).
         /// </summary>
         public abstract void OnStart(StartKind startKind, IActivatedEventArgs args);
@@ -138,32 +138,9 @@ namespace Jupiter.Application
             // okay, now handle launch
             switch (e.PreviousExecutionState)
             {
-                //case ApplicationExecutionState.ClosedByUser:
                 case ApplicationExecutionState.Terminated:
                     {
-                        /*
-                            Restore state if you need to/can do.
-                            Remember that only the primary tile should restore.
-                            (this includes toast with no data payload)
-                            The rest are already providing a nav path.
-
-                            In the event that the cache has expired, attempting to restore
-                            from state will fail because of missing values. 
-                            This is okay & by design.
-                        */
-
-                        //if (DetermineStartCause(e) == AdditionalKinds.Primary)
-                        //{
-                        //    var restored = NavigationService.RestoreSavedNavigation();
-                        //    if (!restored)
-                        //    {
-                        //        await OnStartAsync(StartKind.Launch, e);
-                        //    }
-                        //}
-                        //else
-                        //{
                         OnStart(StartKind.Launch, e);
-                        //}
 
                         SubscribeBackButton();
 
@@ -206,8 +183,6 @@ namespace Jupiter.Application
                 navigationService.IsBackButtonEnabled = IsBackButtonEnabled;
                 Window.Current.Content = navigationService.Frame;
                 WindowWrapper.Current().NavigationService = navigationService;
-
-                //Window.Current.Content = NavigationServiceFactory(BackButton.Attach, ExistingContent.Include, frame).Frame;
             }
 
             Window.Current.Activate();

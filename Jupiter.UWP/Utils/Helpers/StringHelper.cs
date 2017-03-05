@@ -5,11 +5,6 @@
         /// <summary>
         /// Numerals localization
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="singularString"></param>
-        /// <param name="dualString"></param>
-        /// <param name="pluralString"></param>
-        /// <returns></returns>
         public static string LocalizeNumerals(int value, string singularString, string dualString, string pluralString)
         {
             string result = string.Empty;
