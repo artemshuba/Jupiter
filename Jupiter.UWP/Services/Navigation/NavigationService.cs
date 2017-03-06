@@ -59,6 +59,11 @@ namespace Jupiter.Services.Navigation
             FrameFacade.GoBack();
         }
 
+        public virtual void RemoveBackEntry()
+        {
+            Frame.BackStack.Remove(Frame.BackStack.LastOrDefault());
+        }
+
         protected virtual bool OnNavigating(NavigatingCancelEventArgs e)
         {
             var page = FrameFacade.Content as Page;
