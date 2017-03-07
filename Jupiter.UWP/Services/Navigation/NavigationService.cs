@@ -90,6 +90,7 @@ namespace Jupiter.Services.Navigation
                         TargetPageType = e.SourcePageType
                         //Suspending = suspending,
                     };
+                    dataContext.SessionState = JupiterApp.Current.SessionState;
                     dataContext.OnNavigatingFrom(args);
                     return !args.Cancel;
                 }
@@ -116,6 +117,7 @@ namespace Jupiter.Services.Navigation
                 {
                     // prepare for state load
                     dataContext.NavigationService = this;
+                    dataContext.SessionState = JupiterApp.Current.SessionState;
 
                     var parameters = parameter as Dictionary<string, object>;
                     dataContext.OnNavigatedTo(parameters, mode);

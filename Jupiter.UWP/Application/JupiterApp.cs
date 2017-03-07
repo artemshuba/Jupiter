@@ -31,6 +31,8 @@ namespace Jupiter.Application
 
         public bool IsBackButtonEnabled { get; set; }
 
+        public IStateItems SessionState { get; set; } = new StateItems();
+
         protected JupiterApp()
         {
             Current = this;

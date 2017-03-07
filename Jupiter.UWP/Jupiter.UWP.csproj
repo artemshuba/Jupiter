@@ -111,11 +111,13 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\StateItems.cs" />
     <Compile Include="Behavior\ContextMenuBehavior.cs" />
     <Compile Include="Collections\IncrementalLoadingCollection.cs" />
     <Compile Include="Application\JupiterApp.cs" />
     <Compile Include="Application\NavigationServiceList.cs" />
     <Compile Include="Application\WindowWrapper.cs" />
+    <Compile Include="Collections\ObservableDictionary.cs" />
     <Compile Include="Controls\LoadingIndicator.cs" />
     <Compile Include="Converters\BooleanToObjectConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
