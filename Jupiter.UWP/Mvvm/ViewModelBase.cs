@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Windows.UI.Xaml.Navigation;
 using Jupiter.Services.Navigation;
+using Jupiter.Application;
 
 namespace Jupiter.Mvvm
 {
@@ -17,6 +18,8 @@ namespace Jupiter.Mvvm
         {
             get { return _operations; }
         }
+
+        public virtual IStateItems SessionState { get; set; }
 
         protected ViewModelBase()
         {

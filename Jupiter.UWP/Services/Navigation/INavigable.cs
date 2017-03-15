@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Jupiter.Application;
+using System.Collections.Generic;
 using Windows.UI.Xaml.Navigation;
 
 namespace Jupiter.Services.Navigation
@@ -10,5 +11,7 @@ namespace Jupiter.Services.Navigation
         void OnNavigatingFrom(NavigatingEventArgs e);
 
         NavigationService NavigationService { get; set; }
+
+        IStateItems SessionState { get; set; }
     }
 }
