@@ -8,57 +8,19 @@ namespace Jupiter.Utils.Helpers
 {
     public static class FileStorageHelper
     {
-        public static async Task<bool> IsFileExists(string path, IStorageFolder rootFolder = null, bool phone = false)
+        public static bool IsFileExists(string path, IStorageFolder rootFolder = null)
         {
             var localFolder = rootFolder ?? ApplicationData.Current.LocalFolder;
-            StorageFile file = null;
-            if (!phone)
-            {
-                file = await localFolder.TryGetItemAsync(path) as StorageFile;
-            }
-            else
-            {
-                try
-                {
-                    file = await localFolder.GetFileAsync(path);
-                }
-                catch (Exception)
-                {
-                }
-            }
-
-            if (file != null)
-                return true;
-
-            return false;
+            var fullPath = Path.Combine(localFolder.Path, path);
+            return File.Exists(fullPath);
         }
 
-        public static async Task<bool> IsFolderExists(string path, IStorageFolder rootFolder = null, bool phone = false)
+        public static bool IsFolderExists(string path, IStorageFolder rootFolder = null)
         {
             var localFolder = rootFolder ?? ApplicationData.Current.LocalFolder;
-            StorageFolder folder = null;
-
-            if (!phone)
-            {
-                folder = await localFolder.TryGetItemAsync(path) as StorageFolder;
-            }
-            else
-            {
-                try
-                {
-                    folder = await localFolder.GetFolderAsync(path);
-                }
-                catch (Exception)
-                {
-                }
-            }
-
-            if (folder != null)
-                return true;
-
-            return false;
+            var fullPath = Path.Combine(localFolder.Path, path);
+            return Directory.Exists(fullPath);
         }
-
 
         public static async Task<StorageFolder> CreateFolder(string path, IStorageFolder rootFolder = null, CreationCollisionOption options = CreationCollisionOption.FailIfExists)
         {
