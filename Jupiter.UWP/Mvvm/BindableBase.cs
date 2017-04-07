@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using Windows.ApplicationModel;
 
 namespace Jupiter.Mvvm
@@ -8,6 +9,7 @@ namespace Jupiter.Mvvm
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        [IgnoreDataMember]
         public bool IsInDesignMode
         {
             get { return DesignMode.DesignModeEnabled; }
