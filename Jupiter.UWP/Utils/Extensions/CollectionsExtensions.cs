@@ -44,7 +44,7 @@ namespace Jupiter.Utils.Extensions
 
         public static void Shuffle<T>(this IList<T> list)
         {
-            var rng = new Random();
+            var rng = new Random(Environment.TickCount);
             int n = list.Count;
             while (n > 1)
             {
