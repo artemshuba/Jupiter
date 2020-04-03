@@ -92,7 +92,7 @@ namespace Jupiter.Application
             InternalActivatedAsync(e);
         }
 
-        public virtual void OnUnhandledException(UnhandledExceptionEventArgs e)
+        public virtual void OnUnhandledException(Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
 
         }
@@ -211,7 +211,7 @@ namespace Jupiter.Application
             };
         }
 
-        private void BootStrapper_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private void BootStrapper_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             OnUnhandledException(e);
         }
